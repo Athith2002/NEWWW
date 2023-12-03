@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  back_end:
+    build: ./back_end
+    container_name: backend_project_c
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./back_end:/app
+      - ./app/node_modules
+  front_end:
+    build: ./front_end
+    container_name: fronend_project_c
+    ports:
+      - "5173:5173"
+    stdin_open: true
+  mongodb:
+    image: mongo
+    container_name: mongodb_c
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+volumes:
+  mongodb_data:
